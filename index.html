@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +27,7 @@ animation:bgmove 8s ease infinite;
 100%{background-position:0% 50%;}
 }
 
-/* Splash Screen */
+/* Splash */
 #splash{
 position:fixed;
 width:100%;
@@ -47,9 +46,9 @@ animation:fadeOut 2s forwards 2s;
 to{opacity:0;visibility:hidden;}
 }
 
-/* Moving Text */
+/* Moving text */
 body::before{
-content:"💖 Welcome To ITS Love Family 💕";
+content:"💖 ᎪᏚᏚᎪᏞᎪᎷᏌ ᎪᏞᎪᏆᏦᏌᎷ 💕 ᏔᎬᏞᏟᎾᎷᎬ Ͳϴ ᏆͲՏ ᏞϴᏙᎬ ҒᎪᎷᏆᏞᎽ 💗";
 position:absolute;
 top:10px;
 left:100%;
@@ -88,6 +87,7 @@ color:#fff;
 .result{
 margin-top:10px;
 color:white;
+font-size:22px;
 }
 
 /* Install Button */
@@ -110,32 +110,72 @@ display:none;
 <button id="installBtn">Install</button>
 
 <div class="box">
-<h2>ITS LOGO MAKER 💖</h2>
+<h2>ᏆͲՏ ᏞϴᏀϴ ᎷᎪᏦᎬᎡ 💖</h2>
 
-<input type="text" id="name" placeholder="Enter Name">
-
+<input type="text" id="name" placeholder="Enter Your Name">
 <br>
 
 <button onclick="makeName()">Create</button>
 <button onclick="copyText()">Copy</button>
 
-<div id="output" class="result"></div>
+<div id="output" class="result">Your Logo Name</div>
+
+<p style="color:#00ffcc;margin-top:10px;">👑 App Creator By (ɪᴛs xᴀᴛᴋᴀ)</p>
 
 </div>
 
 <script>
+
+// LOGO FUNCTION
 function makeName(){
-let name=document.getElementById("name").value;
-document.getElementById("output").innerText="💖 "+name+" 💖";
+
+let name=document.getElementById("name").value.trim();
+
+if(name===""){
+document.getElementById("output").innerText="Enter Name First";
+return;
 }
 
+let prefix="ᶦƬˢ⃝🎀";
+let suffix="﷽";
+
+let smallCaps={
+A:'ᴀ',B:'ʙ',C:'ᴄ',D:'ᴅ',E:'ᴇ',F:'ғ',G:'ɢ',
+H:'ʜ',I:'ɪ',J:'ᴊ',K:'ᴋ',L:'ʟ',M:'ᴍ',N:'ɴ',
+O:'ᴏ',P:'ᴘ',Q:'ǫ',R:'ʀ',S:'s',T:'ᴛ',U:'ᴜ',
+V:'ᴠ',W:'ᴡ',X:'x',Y:'ʏ',Z:'ᴢ'
+};
+
+let first=name.charAt(0).toUpperCase();
+let code=first.charCodeAt(0);
+
+let regional="";
+if(code>=65 && code<=90){
+regional=String.fromCodePoint(0x1F1E6+(code-65));
+}else{
+regional=first;
+}
+
+let rest=name.slice(1);
+let styled="";
+
+for(let i=0;i<rest.length;i++){
+let ch=rest[i].toUpperCase();
+styled += smallCaps[ch] || rest[i];
+}
+
+document.getElementById("output").innerText =
+prefix + regional + styled + suffix;
+}
+
+// COPY
 function copyText(){
 let text=document.getElementById("output").innerText;
 navigator.clipboard.writeText(text);
-alert("Copied!");
+alert("Copied Successfully!");
 }
 
-// install system
+// INSTALL SYSTEM
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt",(e)=>{
 e.preventDefault();
@@ -147,10 +187,11 @@ document.getElementById("installBtn").onclick=()=>{
 deferredPrompt.prompt();
 };
 
-// service worker
+// SERVICE WORKER
 if("serviceWorker" in navigator){
 navigator.serviceWorker.register("sw.js");
 }
+
 </script>
 
 </body>
