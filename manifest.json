@@ -1,1 +1,15 @@
-
+{
+"name":"ITS Love Family",
+"short_name":"ITS App",
+"start_url":"index.html",
+"display":"standalone",
+"background_color":"#ff2e63",
+"theme_color":"#ff2e63",
+"icons":[
+{
+"src":"icon.svg",
+"sizes":"512x512",
+"type":"image/svg+xml"
+}
+]
+}
