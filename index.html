@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ITS Love Family DX</title>
-
-<link rel="manifest" href="manifest.json">
-
-<style>
+<title>ITS Love Family DX</title><link rel="manifest" href="manifest.json"><style>
 body{
 margin:0;
 font-family:Arial;
@@ -48,7 +43,7 @@ to{opacity:0;visibility:hidden;}
 
 /* Moving text */
 body::before{
-content:"💖 ᎪᏚᏚᎪᏞᎪᎷᏌ ᎪᏞᎪᏆᏦᏌᎷ 💕 ᏔᎬᏞᏟᎾᎷᎬ Ͳϴ ᏆͲՏ ᏞϴᏙᎬ ҒᎪᎷᏆᏞᎽ 💗";
+content:"💖 ᎪᏚᏚᎪᏞᎪᎷᏌ ᎪᏞᎪᏆᏦᏌᎷ 💕 ᏔᎬᏞᏟᎾᎷᎬ 💗";
 position:absolute;
 top:10px;
 left:100%;
@@ -100,35 +95,91 @@ padding:10px;
 border-radius:10px;
 display:none;
 }
-</style>
-</head>
 
-<body>
+/* WhatsApp floating */
+.wa-float{
+position:fixed;
+bottom:80px;
+right:20px;
+background:#25D366;
+color:#fff;
+font-size:26px;
+padding:14px;
+border-radius:50%;
+text-decoration:none;
+box-shadow:0 0 15px #25D366;
+animation:pulse 1.5s infinite;
+}
 
-<div id="splash">💖 ITS APP 💖</div>
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
 
-<button id="installBtn">Install</button>
+/* Contact button */
+.contact-btn{
+position:fixed;
+bottom:150px;
+right:20px;
+background:#ff2e63;
+color:white;
+padding:10px;
+border:none;
+border-radius:10px;
+}
+
+/* Popup */
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+.popup-box{
+background:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+}
+
+.popup-box a{
+background:#25D366;
+color:white;
+padding:10px;
+border-radius:10px;
+text-decoration:none;
+}
+</style></head><body><div id="splash">💖 ITS APP 💖</div><button id="installBtn">Install</button>
 
 <div class="box">
-<h2>ᏆͲՏ ᏞϴᏀϴ ᎷᎪᏦᎬᎡ 💖</h2>
-
-<input type="text" id="name" placeholder="Enter Your Name">
-<br>
-
-<button onclick="makeName()">Create</button>
+<h2>ᏆͲՏ ᏞϴᏀϴ ᎷᎪᏦᎬᎡ 💖</h2><input type="text" id="name" placeholder="Enter Your Name">
+<br><button onclick="makeName()">Create</button>
 <button onclick="copyText()">Copy</button>
 
-<div id="output" class="result">Your Logo Name</div>
+<div id="output" class="result">Your Stylish Name</div><p style="color:#00ffcc;margin-top:10px;">👑 App Creator By (ХᎪͲᏦᎪ)</p>
+</div><!-- WhatsApp Auto Message --><a href="https://wa.me/8801870339767?text=Hello%20I%20am%20interested%20in%20your%20ITS%20Logo%20Maker%20App%20💖" target="_blank" class="wa-float">💬</a>
 
-<p style="color:#00ffcc;margin-top:10px;">👑 App Creator By (ɪᴛs xᴀᴛᴋᴀ)</p>
+<!-- Contact Popup --><button class="contact-btn" onclick="openPopup()">Contact</button>
 
+<div id="popup" class="popup">
+<div class="popup-box">
+<h3>Contact Developer 💖</h3>
+<p>Chat on WhatsApp</p>
+<a href="https://wa.me/8801870339767?text=Hi%20I%20need%20help%20🔥" target="_blank">Open WhatsApp</a>
+<br><br>
+<button onclick="closePopup()">Close</button>
 </div>
-
-<script>
+</div><script>
 
 // LOGO FUNCTION
 function makeName(){
-
 let name=document.getElementById("name").value.trim();
 
 if(name===""){
@@ -175,24 +226,29 @@ navigator.clipboard.writeText(text);
 alert("Copied Successfully!");
 }
 
-// INSTALL SYSTEM
+// INSTALL
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt",(e)=>{
 e.preventDefault();
 deferredPrompt=e;
 document.getElementById("installBtn").style.display="block";
 });
-
 document.getElementById("installBtn").onclick=()=>{
 deferredPrompt.prompt();
 };
+
+// POPUP
+function openPopup(){
+document.getElementById("popup").style.display="flex";
+}
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
 
 // SERVICE WORKER
 if("serviceWorker" in navigator){
 navigator.serviceWorker.register("sw.js");
 }
 
-</script>
-
-</body>
+</script></body>
 </html>
