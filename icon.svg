@@ -74,7 +74,7 @@
         fill="#000"
         opacity="0.4"
         transform="translate(8,10)">
-    ITS
+    ᏃᎬΝ
   </text>
 
   <!-- Neon outline glitch -->
@@ -85,7 +85,7 @@
         stroke="url(#neon)"
         stroke-width="7"
         filter="url(#glow)">
-    ITS
+    ᏃᎬΝ
     <animate attributeName="stroke-width" values="5;10;5" dur="1.5s" repeatCount="indefinite"/>
   </text>
 
@@ -95,7 +95,7 @@
         font-family="Arial Black"
         fill="url(#chrome)"
         filter="url(#glitch)">
-    ITS
+    ᏃᎬΝ
     <animate attributeName="opacity" values="0.7;1;0.7" dur="1.2s" repeatCount="indefinite"/>
     <animateTransform attributeName="transform"
       type="scale"
